@@ -1,0 +1,13 @@
+### Evaluate with an empty payload
+POST http://localhost:5217/access/v1/evaluation
+Content-Type: application/json
+
+{
+}
+
+### Evaluate with an empty payload
+POST https://b3fd6d91486a.ngrok.app/access/v1/evaluation
+Content-Type: application/json
+
+{
+}

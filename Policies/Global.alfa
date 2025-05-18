@@ -1,0 +1,29 @@
+namespace AcmeCorp {
+
+    import Oasis.Functions.*
+    import Oasis.Attributes.*
+
+    policyset global {
+        apply firstApplicable
+        policy routeAccess
+    }
+
+    condition IsManager Subject.Role == "manager"
+    condition AccessRoute ResourceType == "route"
+
+    policy routeAccess {
+        target clause AccessRoute
+        apply denyUnlessPermit
+
+        rule hasReadAccess {
+            target clause Action == "GET"
+            permit
+        }
+
+        rule hasWriteAccess {
+            target clause Action == "POST" || Action == "PATCH" || Action == "DELETE"
+            permit
+            condition IsManager
+        }
+    }
+}
